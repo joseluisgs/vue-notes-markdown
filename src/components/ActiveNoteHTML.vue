@@ -26,7 +26,6 @@ export default {
 }
 </script>
 
-
 <style scoped>
 .mdscss {
   font-size: 1rem;

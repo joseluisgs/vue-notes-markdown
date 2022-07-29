@@ -2,7 +2,8 @@
   <div v-if="activeNote" class="h-full | flex flex-col">
     <div class="flex-1 | flex">
       <section class="flex-1">
-        <textarea :value="activeNote.body" @input="updateNote" class="w-full h-full p-3 | bg-gray-200"></textarea>
+        <!-- Esto lo hacemos siguiendo esto: https://vuejs.org/guide/components/events.html#usage-with-v-model -->
+        <ActiveNoteMD v-model:body="activeNote.body" class="w-full h-full p-3 | bg-gray-200" />
       </section>
       <ActiveNoteHTML :body="activeNote.body" class="p-3 | bg-gray-900 text-white | flex-1" />
     </div>
@@ -19,12 +20,14 @@ import { computed } from 'vue'
 
 import NoteStore from '@/stores/notes'
 import ActiveNoteHTML from './ActiveNoteHTML.vue'
+import ActiveNoteMD from './ActiveNoteMD.vue'
 
 export default {
   name: 'ActiveNote',
 
   components: {
     ActiveNoteHTML,
+    ActiveNoteMD,
   },
 
   setup() {
