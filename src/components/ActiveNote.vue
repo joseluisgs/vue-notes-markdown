@@ -3,7 +3,7 @@
     <div class="flex-1 | flex">
       <section class="flex-1">
         <!-- Esto lo hacemos siguiendo esto: https://vuejs.org/guide/components/events.html#usage-with-v-model -->
-        <ActiveNoteMD v-model:body="activeNote.body" class="w-full h-full p-3 | bg-gray-200" />
+        <ActiveNoteMD v-model:body="activeNote.body" @blur-note="blurNote" class="w-full h-full p-3 | bg-gray-200" />
       </section>
       <ActiveNoteHTML :body="activeNote.body" class="p-3 | bg-gray-900 text-white | flex-1" />
     </div>
@@ -54,6 +54,8 @@ export default {
 
     const deleteNote = () => noteStore.deleteNote()
 
+    const blurNote = (value) => !value.length && deleteNote()
+
     return {
       // Podríamos devolver activeNote directamente pero luego habrá consultas remotas...
       activeNote,
@@ -61,6 +63,7 @@ export default {
       closeNote,
       createNote,
       deleteNote,
+      blurNote,
     }
   },
 }
