@@ -1,14 +1,3 @@
-<script>
-import NoteList from '@/components/NoteList.vue'
-
-export default {
-  name: 'App',
-  components: {
-    NoteList,
-  },
-}
-</script>
-
 <template>
   <div class="dev | container | p-3 my-3 mx-auto | flex">
     <!-- parte izquierda -->
@@ -21,14 +10,24 @@ export default {
     <!-- parte derecha flex grow para que crezca todo-->
     <section class="dev | p-3 flex-grow">
       <!-- nota activa -->
-      <p>Active Note</p>
+      <ActiveNote />
     </section>
   </div>
 </template>
 
+<script>
+import NoteList from '@/components/NoteList.vue'
+import ActiveNote from '@/components/ActiveNote.vue'
+
+export default {
+  name: 'App',
+  components: {
+    NoteList,
+    ActiveNote,
+  },
+}
+</script>
+
 <style scoped>
 /** Mis estilos */
-.dev {
-  border: 1px solid red;
-}
 </style>
