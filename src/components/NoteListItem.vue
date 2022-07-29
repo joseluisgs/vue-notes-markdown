@@ -1,5 +1,5 @@
 <template>
-  <article @click="setActiveNote" class="p-3 my-4 | border-2 border-gray-300 rounded-md | cursor-pointer">
+  <article @click="setActiveNote">
     {{ title }}
   </article>
 </template>
