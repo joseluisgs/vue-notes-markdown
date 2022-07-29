@@ -8,11 +8,12 @@
       <ActiveNoteHTML :body="activeNote.body" class="p-3 | bg-gray-900 text-white | flex-1" />
     </div>
     <!-- Note Info and actions -->
-    <section class="mt-3 | flex justify-end">
-      <a @click="deleteNote" href="#" class="py-1 px-3 mr-3 | text-red-700 rounded-md">Delete note</a>
-    </section>
-    <section class="mt-3 | flex justify-end">
-      <a @click="closeNote" href="#" class="py-1 px-3 | bg-gray-200 rounded-md">Close note</a>
+    <section class="mt-3 mr-3 | flex justify-between items-center">
+      <div class="text-xs">Created on {{ noteDate }}, contains {{ noteLength }} words</div>
+      <div>
+        <a @click="deleteNote" href="#" class="py-1 px-3 mr-3 | text-red-700 rounded-md">Delete note</a>
+        <a @click="closeNote" href="#" class="py-1 px-3 | bg-gray-200 rounded-md">Close note</a>
+      </div>
     </section>
   </div>
   <div v-else class="h-full | flex justify-center items-center">
@@ -65,6 +66,11 @@ export default {
       createNote,
       deleteNote,
       blurNote,
+      // el id es el instante de creación...
+      noteDate: computed(() => new Date(activeNote.value.id).toLocaleString()),
+      // https://regex101.com/
+      // Vamos a dividir (crear un array) por elementos que no sea palabras o numeros
+      noteLength: computed(() => activeNote.value.body.split(/\W+/).length),
     }
   },
 }
