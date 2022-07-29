@@ -1,4 +1,5 @@
-<script setup></script>
+<script setup>
+</script>
 
 <template>
   <div class="dev | container | p-3 my-3 mx-auto | flex">
