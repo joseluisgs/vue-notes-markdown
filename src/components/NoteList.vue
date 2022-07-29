@@ -8,25 +8,25 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import NoteStore from '@/stores/notes.js'
-import NodeListItem from '@/components/NoteListItem.vue'
+  import { computed } from 'vue'
+  import NoteStore from '@/stores/notes.js'
+  import NodeListItem from '@/components/NoteListItem.vue'
 
-export default {
-  name: 'NoteList',
+  export default {
+    name: 'NoteList',
 
-  components: {
-    NoteListItem: NodeListItem,
-  },
+    components: {
+      NoteListItem: NodeListItem,
+    },
 
-  setup() {
-    const noteStore = NoteStore()
+    setup() {
+      const noteStore = NoteStore()
 
-    // Exponemos lo que queremos :)
-    return {
-      // con computed obtengo el valor real computado...
-      notes: computed(() => noteStore.getNotesBySearchTerm()),
-    }
-  },
-}
+      // Exponemos lo que queremos :)
+      return {
+        // con computed obtengo el valor real computado...
+        notes: computed(() => noteStore.getNotesBySearchTerm()),
+      }
+    },
+  }
 </script>

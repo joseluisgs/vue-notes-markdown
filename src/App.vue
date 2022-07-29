@@ -18,27 +18,27 @@
 </template>
 
 <script>
-import NoteList from '@/components/NoteList.vue'
-import ActiveNote from '@/components/ActiveNote.vue'
-import DeleteNote from '@/components/DeleteNote.vue'
-import NoteStore from '@/stores/notes'
-import SearchNote from '@/components/SearchNote.vue'
+  import NoteList from '@/components/NoteList.vue'
+  import ActiveNote from '@/components/ActiveNote.vue'
+  import DeleteNote from '@/components/DeleteNote.vue'
+  import NoteStore from '@/stores/notes'
+  import SearchNote from '@/components/SearchNote.vue'
 
-export default {
-  name: 'App',
-  components: {
-    NoteList,
-    ActiveNote,
-    DeleteNote,
-    SearchNote,
-  },
+  export default {
+    name: 'App',
+    components: {
+      NoteList,
+      ActiveNote,
+      DeleteNote,
+      SearchNote,
+    },
 
-  setup() {
-    const noteStore = new NoteStore()
+    setup() {
+      const noteStore = new NoteStore()
 
-    return {
-      noteStore,
-    }
-  },
-}
+      return {
+        noteStore,
+      }
+    },
+  }
 </script>

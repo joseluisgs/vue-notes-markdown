@@ -4,6 +4,6 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "endOfLine": "auto",
-  "printWidth": 150
-
+  "printWidth": 100,
+  "vueIndentScriptAndStyle": true
 }
