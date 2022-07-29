@@ -9,6 +9,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "dompurify": "^2.3.10",
+    "marked": "^4.0.18",
     "pinia": "^2.0.17",
     "remove-markdown": "^0.5.0",
     "vue": "^3.2.37",
