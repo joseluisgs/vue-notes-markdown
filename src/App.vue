@@ -27,7 +27,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-/** Mis estilos */
-</style>

@@ -25,6 +25,10 @@ const NoteStore = defineStore({
     setActiveNote(noteId = null) {
       this.activeNote = noteId
     },
+    updateNote({ id, body }) {
+      const noteToUpdate = this.notes.find((note) => note.id === id)
+      noteToUpdate.body = body
+    },
   },
 })
 
