@@ -9,7 +9,10 @@
     </div>
     <!-- Note Info and actions -->
     <section class="mt-3 | flex justify-end">
-      <a @click="closeNote" href="#" class="bg-gray-200 py-1 px-3 rounded-md">Close note</a>
+      <a @click="deleteNote" href="#" class="py-1 px-3 mr-3 | text-red-700 rounded-md">Delete note</a>
+    </section>
+    <section class="mt-3 | flex justify-end">
+      <a @click="closeNote" href="#" class="py-1 px-3 | bg-gray-200 rounded-md">Close note</a>
     </section>
   </div>
   <div v-else class="h-full | flex justify-center items-center">
@@ -44,14 +47,12 @@ export default {
       })
     }
 
-    const closeNote = () => {
-      // puedo tocar el estado directamente, pero para eso hemos hecho esta función...
-      noteStore.setActiveNote()
-    }
+    // puedo tocar el estado directamente, pero para eso hemos hecho esta función...
+    const closeNote = () => noteStore.setActiveNote()
 
-    const createNote = () => {
-      noteStore.createNote()
-    }
+    const createNote = () => noteStore.createNote()
+
+    const deleteNote = () => noteStore.deleteNote()
 
     return {
       // Podríamos devolver activeNote directamente pero luego habrá consultas remotas...
@@ -59,6 +60,7 @@ export default {
       updateNote,
       closeNote,
       createNote,
+      deleteNote,
     }
   },
 }

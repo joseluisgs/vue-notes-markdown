@@ -37,6 +37,11 @@ const NoteStore = defineStore({
       this.notes.unshift(newNote)
       this.setActiveNote(newNote.id)
     },
+    deleteNote() {
+      const index = this.notes.findIndex((note) => note.id === this.activeNote)
+      this.notes.splice(index, 1)
+      this.activeNote = null
+    },
   },
 })
 
