@@ -1,14 +1,22 @@
-<script setup>
+<script>
+import NoteList from '@/components/NoteList.vue'
+
+export default {
+  name: 'App',
+  components: {
+    NoteList,
+  },
+}
 </script>
 
 <template>
   <div class="dev | container | p-3 my-3 mx-auto | flex">
     <!-- parte izquierda -->
-    <section class="dev | p-3 mr-3">
+    <section class="dev | w-1/4 p-3 mr-3">
       <!-- busquedas de notas -->
       <p>Search Notes</p>
       <!-- Lista de notas -->
-      <p>Note List</p>
+      <NoteList />
     </section>
     <!-- parte derecha flex grow para que crezca todo-->
     <section class="dev | p-3 flex-grow">
