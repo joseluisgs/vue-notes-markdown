@@ -29,8 +29,8 @@
 <style scoped>
   .mdscss {
     font-size: 1rem;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial,
-      sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+      'Helvetica Neue', Arial, sans-serif;
   }
 
   .mdscss h1 {
