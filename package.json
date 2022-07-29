@@ -2,7 +2,7 @@
   "name": "vue-notes-markdown",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port=4000",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "test:unit": "vitest --environment jsdom",

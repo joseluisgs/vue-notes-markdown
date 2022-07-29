@@ -9,6 +9,7 @@ const NoteStore = defineStore({
     notes: [], // array de notas
     activeNote: null, // nota activa
     deleting: false, // estado de eliminación
+    searchTerm: '', // término de búsqueda
   }),
 
   // Operaciones sobre el estado
@@ -21,6 +22,10 @@ const NoteStore = defineStore({
       const id = noteId ? noteId : state.activeNote
       const body = state.notes.find((note) => note.id === id).body
       return removeMd(body.substring(0, 20))
+    },
+    getNotesBySearchTerm: (state) => () => {
+      let filter = new RegExp(state.searchTerm, 'i') // patron de búsqueda ignorando mayúsculas o minúsculas
+      return state.notes.filter((note) => note.body.match(filter))
     },
   },
 
@@ -52,6 +57,9 @@ const NoteStore = defineStore({
     },
     setDeleting(deleting) {
       this.deleting = deleting
+    },
+    setSearchTerm(searchTerm) {
+      this.searchTerm = searchTerm
     },
   },
 })

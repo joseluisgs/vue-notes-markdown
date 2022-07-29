@@ -25,7 +25,7 @@ export default {
     // Exponemos lo que queremos :)
     return {
       // con computed obtengo el valor real computado...
-      notes: computed(() => noteStore.notes),
+      notes: computed(() => noteStore.getNotesBySearchTerm()),
     }
   },
 }

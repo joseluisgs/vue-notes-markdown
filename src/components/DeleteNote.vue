@@ -17,7 +17,7 @@ export default {
   name: 'DeleteNote',
 
   setup() {
-    const noteStore = new NoteStore()
+    const noteStore = NoteStore()
 
     return {
       noteStore,
