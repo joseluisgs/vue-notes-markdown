@@ -52,7 +52,8 @@ export default {
 
     const createNote = () => noteStore.createNote()
 
-    const deleteNote = () => noteStore.deleteNote()
+    // const deleteNote = () => noteStore.deleteNote()
+    const deleteNote = () => noteStore.setDeleting(true)
 
     const blurNote = (value) => !value.length && deleteNote()
 

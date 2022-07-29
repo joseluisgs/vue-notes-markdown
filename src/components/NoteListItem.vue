@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import removeMd from 'remove-markdown'
 import NoteStore from '@/stores/notes'
 export default {
   name: 'NoteListItem',
@@ -23,7 +21,7 @@ export default {
 
     return {
       // Con computed obtengo el valor real computado...
-      title: computed(() => removeMd(props.note.body.substring(0, 20))),
+      title: noteStore.getNoteTitle(props.note.id),
       setActiveNote: () => noteStore.setActiveNote(props.note.id),
     }
   },
