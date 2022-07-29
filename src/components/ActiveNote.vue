@@ -12,7 +12,9 @@
       <a @click="closeNote" href="#" class="bg-gray-200 py-1 px-3 rounded-md">Close note</a>
     </section>
   </div>
-  <div v-else class="h-full | flex justify-center items-center">Please select a note to start editing 📝</div>
+  <div v-else class="h-full | flex justify-center items-center">
+    Please select a note to start editing o &nbsp;<a @click="createNote" href="#" class="underline font-bold"> create a note</a> &nbsp;📝
+  </div>
 </template>
 
 <script>
@@ -47,11 +49,16 @@ export default {
       noteStore.setActiveNote()
     }
 
+    const createNote = () => {
+      noteStore.createNote()
+    }
+
     return {
       // Podríamos devolver activeNote directamente pero luego habrá consultas remotas...
       activeNote,
       updateNote,
       closeNote,
+      createNote,
     }
   },
 }
