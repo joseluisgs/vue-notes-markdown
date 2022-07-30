@@ -14,12 +14,12 @@
             v-model:body="activeNote.body"
             @update:body="updateNote"
             @blur-note="blurNote"
-            class="min-h-1/4 w-full h-full p-3 | bg-gray-200"
+            class="min-h-1/4 w-full h-full p-3 | bg-gray-200 | rounded-l-md"
           />
         </section>
         <ActiveNoteHTML
           :body="activeNote.body"
-          class="min-h-1/4 p-3 | bg-gray-900 text-white | flex-1"
+          class="min-h-1/4 p-3 | bg-gray-900 text-white | flex-1 | rounded-r-md"
         />
       </div>
       <!-- Note Info and actions -->
