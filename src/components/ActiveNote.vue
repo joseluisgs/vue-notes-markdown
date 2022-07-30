@@ -54,7 +54,7 @@
 
 <script>
   import { computed } from 'vue'
-
+  import debounce from 'lodash/debounce'
   import NoteStore from '@/stores/notes'
   import ActiveNoteHTML from './ActiveNoteHTML.vue'
   import ActiveNoteMD from './ActiveNoteMD.vue'
@@ -74,12 +74,15 @@
         noteStore.activeNote ? noteStore.getNoteById(noteStore.activeNote) : null
       )
 
-      const updateNote = (value) => {
-        noteStore.updateNote({
-          id: activeNote.value.id,
-          body: value,
-        })
-      }
+      // Al usar debounce lo que hacemos es que n o se actualice cada cierto tiempo, si no cada x ms una ves dejemos de escribir, de esta manera no sobrecargamos...
+      const updateNote = debounce(
+        (value) =>
+          noteStore.updateNote({
+            id: activeNote.value.id,
+            body: value,
+          }),
+        500
+      )
 
       // puedo tocar el estado directamente, pero para eso hemos hecho esta función...
       const closeNote = () => noteStore.setActiveNote()

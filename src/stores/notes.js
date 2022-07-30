@@ -62,7 +62,7 @@ const NoteStore = defineStore({
     async updateNote({ id, body }) {
       try {
         // Tenemos la referencia del documento...
-        // console.log('update note: ' + id)
+        //console.log(`update note: ${id}`)
         const noteRef = doc(collection(db, userCollections, this.user.uid, notesCollection), id)
         // console.log('New Note to update -> ', noteRef.id)
         await updateDoc(noteRef, { body: body })
