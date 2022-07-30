@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite-plugin-windicss'
+// Plugins opcionales si quieres mejorarlo: https://windicss.org/plugins/transform.html
 import typography from 'windicss/plugin/typography'
 import forms from 'windicss/plugin/forms'
 
 export default defineConfig({
   darkMode: 'class',
-  plugins: [typography(), forms()],
+  plugins: [typography, forms],
   theme: {
     fontFamily: {
       sans: ['Ubuntu', 'ui-sans-serif', 'system-ui'],
