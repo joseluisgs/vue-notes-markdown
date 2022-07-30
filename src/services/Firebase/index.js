@@ -32,7 +32,8 @@ const providerGoogle = new GoogleAuthProvider()
 const user = auth.currentUser
 
 // Colecciones de documentos a usar
-const notesCollection = 'vuenotes-notes'
+const notesCollection = 'notes'
+const userCollections = 'vuenotes-user'
 
 // Creamos los directorios para almacenar los ficheros
 // const roomsStorage = storage.child('vuetalk').child('rooms');
@@ -53,6 +54,7 @@ export {
 
   // Colecciones
   notesCollection,
+  userCollections,
 
   // Almacenamiento
   // roomsStorage,

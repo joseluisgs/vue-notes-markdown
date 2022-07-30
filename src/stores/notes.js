@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import removeMd from 'remove-markdown'
-import { auth, providerGoogle, db, notesCollection } from '@/services/Firebase'
+import { auth, providerGoogle, db, userCollections, notesCollection } from '@/services/Firebase'
 import { signInWithPopup, signOut } from 'firebase/auth'
 import { query, onSnapshot, collection, where, doc, setDoc, updateDoc } from 'firebase/firestore'
 
@@ -45,14 +45,14 @@ const NoteStore = defineStore({
 
     setActiveNote(noteId = null) {
       this.activeNote = noteId
-      console.log(`Nota activa es: ${this.activeNote}`)
+      // console.log(`Nota activa es: ${this.activeNote}`)
     },
 
     async updateNote({ id, body }) {
       try {
         // Tenemos la referencia del documento...
         // console.log('update note: ' + id)
-        const noteRef = doc(collection(db, notesCollection), id)
+        const noteRef = doc(collection(db, userCollections, this.user.uid, notesCollection), id)
         // console.log('New Note to update -> ', noteRef.id)
         await updateDoc(noteRef, { body: body })
         // console.log('Nota actualizada con ID: ', noteRef.id)
@@ -63,12 +63,11 @@ const NoteStore = defineStore({
 
     async createNote() {
       try {
-        // Como quiero la id, obtengo la id del documento generada
-        const noteRef = doc(collection(db, notesCollection))
+        // Como quiero la id, obtengo la id del documento generada db/users/id/notes
+        const noteRef = doc(collection(db, userCollections, this.user.uid, notesCollection))
         const newNote = {
           id: noteRef.id,
           body: '',
-          uid: this.user.uid,
           createdAt: Date.now(),
         }
         // console.log('New Note to add -> ', newNote)
@@ -129,14 +128,18 @@ const NoteStore = defineStore({
 
     // https://stackoverflow.com/questions/47043651/this-document-does-not-exist-and-will-not-appear-in-queries-or-snapshots-but-id
     async getNotes() {
-      // Obtener ideas en tiempos real, primero la consulta, luego la recorro y la guardo en el array
-      const q = query(
-        collection(db, notesCollection),
-        // Order
-        // orderBy('createdAt', 'desc'),
-        // Solo las de este usuario uid
-        where('uid', '==', this.user.uid)
-      )
+      // Obtenemos la subcoleccion de notas dentro de usuarios; db(userColección(uid).collection(notas)), todo en la misma
+      // como escribir el path db/usuarios/id/notas
+      const q = query(collection(db, userCollections, this.user.uid, notesCollection))
+      // Obtener notas  en tiempos real, primero la consulta, luego la recorro y la guardo en el array
+      // Lo haría así si no uso subcolecciones.... pero al usarlas ya no hace falta filtar por usuario
+      // const q = query(
+      //   collection(db, notesCollection),
+      //   // Order
+      //   // orderBy('createdAt', 'desc'),
+      //   // Solo las de este usuario uid
+      //   where('uid', '==', this.user.uid)
+      // )
 
       onSnapshot(q, (querySnapshot) => {
         let notes = []
@@ -146,7 +149,6 @@ const NoteStore = defineStore({
           let { body, uid, createdAt } = doc.data()
           notes.push({
             id: doc.id,
-            uid,
             body,
             createdAt,
           })
