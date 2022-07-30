@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import removeMd from 'remove-markdown'
 import { auth, providerGoogle, db, notesCollection } from '@/services/Firebase'
 import { signInWithPopup, signOut } from 'firebase/auth'
-import { query, collection, where, doc, orderBy, getDocs } from 'firebase/firestore'
+import { query, onSnapshot, collection, where, doc, setDoc, updateDoc } from 'firebase/firestore'
 
 const NoteStore = defineStore({
   id: 'NoteStore',
@@ -26,7 +26,7 @@ const NoteStore = defineStore({
     getNoteTitle: (state) => (noteId) => {
       const id = noteId ? noteId : state.activeNote
       const body = state.notes.find((note) => note.id === id).body
-      return removeMd(body.substring(0, 20))
+      return removeMd(body.substring(0, 30))
     },
 
     getNotesBySearchTerm: (state) => () => {
@@ -45,20 +45,39 @@ const NoteStore = defineStore({
 
     setActiveNote(noteId = null) {
       this.activeNote = noteId
+      console.log(`Nota activa es: ${this.activeNote}`)
     },
 
-    updateNote({ id, body }) {
-      const noteToUpdate = this.notes.find((note) => note.id === id)
-      noteToUpdate.body = body
+    async updateNote({ id, body }) {
+      try {
+        // Tenemos la referencia del documento...
+        // console.log('update note: ' + id)
+        const noteRef = doc(collection(db, notesCollection), id)
+        // console.log('New Note to update -> ', noteRef.id)
+        await updateDoc(noteRef, { body: body })
+        // console.log('Nota actualizada con ID: ', noteRef.id)
+      } catch (error) {
+        throw new Error(error.message)
+      }
     },
 
     async createNote() {
-      const newNote = {
-        id: Date.now(),
-        body: '',
+      try {
+        // Como quiero la id, obtengo la id del documento generada
+        const noteRef = doc(collection(db, notesCollection))
+        const newNote = {
+          id: noteRef.id,
+          body: '',
+          uid: this.user.uid,
+          createdAt: Date.now(),
+        }
+        // console.log('New Note to add -> ', newNote)
+        await setDoc(noteRef, newNote)
+        // console.log('Nota salvada con ID: ', noteRef.id)
+        this.setActiveNote(noteRef.id)
+      } catch (error) {
+        throw new Error(error.message)
       }
-      this.notes.unshift(newNote)
-      this.setActiveNote(newNote.id)
     },
 
     deleteNote() {
@@ -108,7 +127,9 @@ const NoteStore = defineStore({
       })
     },
 
+    // https://stackoverflow.com/questions/47043651/this-document-does-not-exist-and-will-not-appear-in-queries-or-snapshots-but-id
     async getNotes() {
+      // Obtener ideas en tiempos real, primero la consulta, luego la recorro y la guardo en el array
       const q = query(
         collection(db, notesCollection),
         // Order
@@ -117,20 +138,21 @@ const NoteStore = defineStore({
         where('uid', '==', this.user.uid)
       )
 
-      const querySnapshot = await getDocs(q)
-      let notes = []
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data())
-        let { body, uid, createdAt } = doc.data()
-        notes.push({
-          id: doc.id,
-          uid,
-          body,
-          createdAt,
+      onSnapshot(q, (querySnapshot) => {
+        let notes = []
+        querySnapshot.forEach((doc) => {
+          // doc.data() is never undefined for query doc snapshots
+          // console.log(doc.id, ' => ', doc.data())
+          let { body, uid, createdAt } = doc.data()
+          notes.push({
+            id: doc.id,
+            uid,
+            body,
+            createdAt,
+          })
         })
+        this.setNotes(notes)
       })
-      this.setNotes(notes)
     },
   },
 })

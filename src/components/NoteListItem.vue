@@ -5,6 +5,7 @@
 </template>
 
 <script>
+  import { computed } from 'vue'
   import NoteStore from '@/stores/notes'
   export default {
     name: 'NoteListItem',
@@ -21,7 +22,7 @@
 
       return {
         // Con computed obtengo el valor real computado...
-        title: noteStore.getNoteTitle(props.note.id),
+        title: computed(() => noteStore.getNoteTitle(props.note.id)),
         setActiveNote: () => noteStore.setActiveNote(props.note.id),
       }
     },

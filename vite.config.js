@@ -21,4 +21,9 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+
+  // Eliminamos los consoles log en producción
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
 })

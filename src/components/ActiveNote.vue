@@ -8,6 +8,7 @@
         <!-- Esto lo hacemos siguiendo esto: https://vuejs.org/guide/components/events.html#usage-with-v-model -->
         <ActiveNoteMD
           v-model:body="activeNote.body"
+          @update:body="updateNote"
           @blur-note="blurNote"
           class="w-full h-full p-3 | bg-gray-200"
         />
@@ -73,17 +74,17 @@
         noteStore.activeNote ? noteStore.getNoteById(noteStore.activeNote) : null
       )
 
-      const updateNote = ($event) => {
+      const updateNote = (value) => {
         noteStore.updateNote({
           id: activeNote.value.id,
-          body: $event.target.value,
+          body: value,
         })
       }
 
       // puedo tocar el estado directamente, pero para eso hemos hecho esta función...
       const closeNote = () => noteStore.setActiveNote()
 
-      const createNote = () => noteStore.createNote()
+      const createNote = async () => await noteStore.createNote()
 
       // const deleteNote = () => noteStore.deleteNote()
       const deleteNote = () => noteStore.setDeleting(true)
@@ -99,7 +100,7 @@
         deleteNote,
         blurNote,
         // el id es el instante de creación...
-        noteDate: computed(() => new Date(activeNote.value.id).toLocaleString()),
+        noteDate: computed(() => new Date(activeNote.value.createdAt).toLocaleString()),
         // https://regex101.com/
         // Vamos a dividir (crear un array) por elementos que no sea palabras o numeros
         noteLength: computed(() => activeNote.value.body.split(/\W+/).length),
