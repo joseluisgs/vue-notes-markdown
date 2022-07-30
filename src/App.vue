@@ -10,9 +10,9 @@
     class="container | min-h-1/2 p-3 my-3 mx-auto | bg-white rounded-xl shadow-2xl | md:flex"
   >
     <!-- parte izquierda -->
-    <section class="md:w-1/4 p-3 mr-3 | bg-gray-100">
+    <section class="md:w-1/4 p-3 mr-3 | bg-gray-100 rounded-md">
       <!-- Logout -->
-      <div class="block text-center">
+      <div class="block text-center mb-3">
         {{ noteStore.user.displayName }} 👋
         <a
           @click="userLogout()"

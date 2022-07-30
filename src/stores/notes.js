@@ -42,7 +42,14 @@ const NoteStore = defineStore({
 
     getNotesBySearchTerm: (state) => () => {
       let filter = new RegExp(state.searchTerm, 'i') // patron de búsqueda ignorando mayúsculas o minúsculas
-      return state.notes.filter((note) => note.body.match(filter))
+      return (
+        state.notes
+          // Filtramos por las que tengan esa expresión regular
+          .filter((note) => note.body.match(filter))
+          // Ordenamos de mas moderna a antigua
+          .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+      )
+      // ordenamos por fecha
     },
   },
 
