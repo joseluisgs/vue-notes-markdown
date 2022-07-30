@@ -31,7 +31,7 @@ Proyecto de app en vue para crea ry manejar notas en formato markdown y verlas e
 Sencilla aplicación de notas usando ficheros markdown y renderizado en html con almacenamiento en Firebase y WindiCSS (TailwindCSS).
 
 <p align="center">
-  <img src="https://anthoncode.com/wp-content/uploads/2019/05/vue.jpg" 
+  <img src="https://github.com/joseluisgs/vue-notes-markdown/blob/main/images/Screenshot_20220730_184229.png" 
   width='600px' borderRadius='1rem' boxShadow = '0 5px 18px rgba(0,0,0,0.3)'>
 </p>
 
