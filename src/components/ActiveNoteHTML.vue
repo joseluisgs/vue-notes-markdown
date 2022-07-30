@@ -1,5 +1,8 @@
 <template>
-  <article v-html="markdown" class="mdscss"></article>
+  <article
+    v-html="markdown"
+    class="mdscss"
+  ></article>
 </template>
 
 <script>

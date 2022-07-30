@@ -5,5 +5,9 @@
   "tabWidth": 2,
   "endOfLine": "auto",
   "printWidth": 100,
-  "vueIndentScriptAndStyle": true
+  "vueIndentScriptAndStyle": true,
+  "singleAttributePerLine": true,
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "arrowParens": "always"
 }
