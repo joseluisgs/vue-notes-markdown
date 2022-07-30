@@ -14,7 +14,7 @@
             v-model:body="activeNote.body"
             @update:body="updateNote"
             @blur-note="blurNote"
-            class="min-h-1/4 w-full h-full p-3 | bg-gray-200 | rounded-l-md"
+            class="min-h-1/4 w-full h-full p-3 | bg-gray-100 | rounded-l-md"
           />
         </section>
         <ActiveNoteHTML
