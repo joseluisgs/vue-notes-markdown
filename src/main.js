@@ -22,7 +22,7 @@ const app = createApp(App)
 app.use(createPinia())
 // app.use(router)
 
-app.mount('#app')
+// Antes de montar
 
 // Firebase
 if (import.meta.env.VITE_APP_STAGE === 'dev') {
@@ -32,4 +32,9 @@ if (import.meta.env.VITE_APP_STAGE === 'dev') {
 // Cargamos las notas...
 const noteStore = NoteStore()
 noteStore.fetchNotes(notesJson)
+noteStore.checkAuth()
 console.log(noteStore.notes)
+
+// Todo esto antes de montar
+
+app.mount('#app')

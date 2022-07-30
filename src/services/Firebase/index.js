@@ -9,7 +9,7 @@ import { initializeApp } from 'firebase/app' // mejor que poner import firebase 
 
 // Firebase y sus servicios, importa los quenecesites
 import { getFirestore } from 'firebase/firestore'
-// import { getAuth, GoogleAuthProvider } from 'firebase/auth'
+import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 // import 'firebase/storage'
 
 // Fichero de configuración de Firebase y lectura de las variables
@@ -22,14 +22,14 @@ const firebase = initializeApp(firebaseConfig)
 
 // Elementos de Firebase a usar (Cargamos los que vayamos a usar)
 const db = getFirestore() // Base de datos en tiempo real
-// const auth = getAuth() // Autenticación
+const auth = getAuth() // Autenticación
 // const storage = firebase.storage().ref(); // Almacenamiento
 
 // Métodos de autentificación. Autenticación de Google, poner uno por método de identificación. Se debe eactivar en la consola de Firebase
-// const providerGoogle = new GoogleAuthProvider()
+const providerGoogle = new GoogleAuthProvider()
 
 // usuario actual
-// const user = auth.currentUser
+const user = auth.currentUser
 
 // Colecciones de documentos a usar
 const ideasCollection = 'vuenotes-notes'
@@ -44,13 +44,13 @@ export {
   // Elementos de firebase
   firebase, // Para algunas opciones como los metadatos
   db,
-  // auth,
+  auth,
 
   // Usuario actual
-  // user,
+  user,
 
   // Proveedores de servicio para identificarse
-  // providerGoogle,
+  providerGoogle,
 
   // Colecciones
   ideasCollection,

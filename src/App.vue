@@ -1,9 +1,23 @@
 <template>
   <!-- Delete note -->
   <DeleteNote v-if="noteStore.deleting" />
-  <div class="container | min-h-1/2 p-3 my-3 mx-auto | bg-white rounded-xl shadow-2xl | flex">
+  <div
+    v-if="noteStore.user"
+    class="container | min-h-1/2 p-3 my-3 mx-auto | bg-white rounded-xl shadow-2xl | flex"
+  >
     <!-- parte izquierda -->
     <section class="w-1/4 p-3 mr-3 | bg-gray-100">
+      <!-- Logout -->
+      <div class="block text-center">
+        {{ noteStore.user.displayName }} 👋
+        <a
+          @click="userLogout()"
+          class="underline"
+          href="#"
+        >
+          Logout</a
+        >
+      </div>
       <!-- busquedas de notas -->
       <SearchNote />
       <!-- Lista de notas -->
@@ -14,6 +28,19 @@
       <!-- nota activa -->
       <ActiveNote />
     </section>
+  </div>
+  <div
+    v-else
+    class="container | min-h-1/2 p-3 my-3 mx-auto | bg-white rounded-xl shadow-2xl | flex justify-center items-center"
+  >
+    🔐&nbsp;
+    <a
+      @click="userLogin()"
+      class="underline"
+      href="#"
+      >Login</a
+    >
+    &nbsp;to read your notes
   </div>
 </template>
 
@@ -36,8 +63,18 @@
     setup() {
       const noteStore = new NoteStore()
 
+      const userLogin = async () => {
+        await noteStore.userLogin()
+      }
+
+      const userLogout = async () => {
+        await noteStore.userLogin()
+      }
+
       return {
         noteStore,
+        userLogin,
+        userLogout,
       }
     },
   }
