@@ -14,12 +14,12 @@
             v-model:body="activeNote.body"
             @update:body="updateNote"
             @blur-note="blurNote"
-            class="min-h-1/4 w-full h-full p-3 | bg-gray-100 | rounded-l-md"
+            class="min-h-1/4 w-full h-full p-3 | bg-gray-100 | rounded-md md:(rounded-none rounded-l-md)"
           />
         </section>
         <ActiveNoteHTML
           :body="activeNote.body"
-          class="min-h-1/4 p-3 | bg-gray-900 text-white | flex-1 | rounded-r-md"
+          class="min-h-1/4 p-3 | bg-gray-800 text-white | flex-1 | rounded-md md:(rounded-none rounded-r-md)"
         />
       </div>
       <!-- Note Info and actions -->
@@ -45,7 +45,7 @@
     </div>
     <div
       v-else
-      class="h-full | flex justify-center items-center"
+      class="h-full | md:flex justify-center items-center"
     >
       Please select a note to start editing o &nbsp;<a
         @click="createNote"
