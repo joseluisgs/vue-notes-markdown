@@ -1,5 +1,6 @@
 # Vue Notes Markdown
-Proyecto de app en vue para creary manejar notas en formato markdown
+
+Proyecto de app en vue para crea ry manejar notas en formato markdown y verlas en html
 
 [![Vue Ready](https://img.shields.io/badge/Code-Vue.js-%2342b983)](https://es.vuejs.org/)
 [![LICENSE](https://img.shields.io/badge/Lisence-CC-%23e64545)](https://joseluisgs.github.io/docs/license/)
@@ -26,10 +27,18 @@ Proyecto de app en vue para creary manejar notas en formato markdown
       - [Agradecimientos](#agradecimientos)
 
 ## Acerca de
-Sencilla aplicación de notas usando ficheros markdown, lamacenamiento en Firebase y TailwindCSS.
+
+Sencilla aplicación de notas usando ficheros markdown y renderizado en html con almacenamiento en Firebase y WindiCSS (TailwindCSS).
+
+<p align="center">
+  <img src="https://anthoncode.com/wp-content/uploads/2019/05/vue.jpg" 
+  width='600px' borderRadius='1rem' boxShadow = '0 5px 18px rgba(0,0,0,0.3)'>
+</p>
 
 ## Despliegue
+
 Desplegada en: https://vue-notes-markdown.netlify.app/
+
 ## Project Setup
 
 ```sh
@@ -68,6 +77,7 @@ Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twi
 [![GitHub](https://img.shields.io/github/followers/joseluisgs?style=social)](https://github.com/joseluisgs)
 
 ### Contacto
+
 <p>
   Cualquier cosa que necesites házmelo saber por si puedo ayudarte 💬.
 </p>
@@ -99,6 +109,7 @@ Codificado con :sparkling_heart: por [José Luis González Sánchez](https://twi
 </p>
 
 ### ¿Un café?
+
 <p><a href="https://www.buymeacoffee.com/joseluisgs"> <img align="left" src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" height="48" alt="joseluisgs" /></a></p><br><br><br>
 
 ## Licencia de uso
@@ -108,4 +119,5 @@ Este repositorio y todo su contenido está licenciado bajo licencia **Creative C
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Licencia de Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">JoseLuisGS</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://joseluisgs.github.io/" property="cc:attributionName" rel="cc:attributionURL">José Luis González Sánchez</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional License</a>.<br />Creado a partir de la obra en <a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/joseluisgs" rel="dct:source">https://github.com/joseluisgs</a>.
 
 #### Agradecimientos
+
 Este proyecto está basado en una serie de tutoriales de [Escuela Vue](https://escuelavue.es/proyectos/curso-vue-3-desarrolla-3-proyectos).
