@@ -42,6 +42,25 @@
     >
     &nbsp;to read your notes
   </div>
+  <div class="text-center text-xs">
+    Created by
+    <Icon
+      class="text-red-600"
+      icon="ant-design:heart-filled"
+    />
+    <a
+      href="https://joseluisgs.github.io"
+      target="_blank"
+      >JoseluisGS</a
+    >&nbsp;
+    <a
+      href="https://github.com/joseluisgs"
+      target="_blank"
+      ><Icon
+        class="text-gray-600"
+        icon="akar-icons:github-fill"
+    /></a>
+  </div>
 </template>
 
 <script>
@@ -50,6 +69,7 @@
   import DeleteNote from '@/components/DeleteNote.vue'
   import NoteStore from '@/stores/notes'
   import SearchNote from '@/components/SearchNote.vue'
+  import { Icon } from '@iconify/vue'
 
   export default {
     name: 'App',
@@ -58,6 +78,7 @@
       ActiveNote,
       DeleteNote,
       SearchNote,
+      Icon,
     },
 
     setup() {
