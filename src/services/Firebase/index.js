@@ -33,7 +33,7 @@ const user = auth.currentUser
 
 // Colecciones de documentos a usar
 const notesCollection = 'notes'
-const userCollections = 'vuenotes-user'
+const userCollections = 'vuenotes-users'
 
 // Creamos los directorios para almacenar los ficheros
 // const roomsStorage = storage.child('vuetalk').child('rooms');

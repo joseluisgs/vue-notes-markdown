@@ -6,7 +6,7 @@
       <h6 class="text-center font-bold">📢 Delete {{ noteStore.getNoteTitle() }}</h6>
       <nav class="flex justify-end">
         <a
-          @click="noteStore.deleteNote()"
+          @click="deleteNote()"
           class="underline m-3 text-red-700"
           href="#"
           >Yes</a
@@ -31,8 +31,11 @@
     setup() {
       const noteStore = NoteStore()
 
+      const deleteNote = async () => await noteStore.deleteNote()
+
       return {
         noteStore,
+        deleteNote,
       }
     },
   }

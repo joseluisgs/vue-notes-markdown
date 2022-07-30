@@ -2,7 +2,15 @@ import { defineStore } from 'pinia'
 import removeMd from 'remove-markdown'
 import { auth, providerGoogle, db, userCollections, notesCollection } from '@/services/Firebase'
 import { signInWithPopup, signOut } from 'firebase/auth'
-import { query, onSnapshot, collection, where, doc, setDoc, updateDoc } from 'firebase/firestore'
+import {
+  query,
+  onSnapshot,
+  collection,
+  doc,
+  setDoc,
+  updateDoc,
+  deleteDoc,
+} from 'firebase/firestore'
 
 const NoteStore = defineStore({
   id: 'NoteStore',
@@ -25,8 +33,11 @@ const NoteStore = defineStore({
 
     getNoteTitle: (state) => (noteId) => {
       const id = noteId ? noteId : state.activeNote
-      const body = state.notes.find((note) => note.id === id).body
-      return removeMd(body.substring(0, 30))
+      // buscamos la nota y si existe obtenemos el título
+      const note = state.notes.find((note) => note.id === id)
+      if (note) {
+        return removeMd(note.body.substring(0, 30))
+      }
     },
 
     getNotesBySearchTerm: (state) => () => {
@@ -79,11 +90,21 @@ const NoteStore = defineStore({
       }
     },
 
-    deleteNote() {
-      const index = this.notes.findIndex((note) => note.id === this.activeNote)
-      this.notes.splice(index, 1)
-      this.activeNote = null
-      this.deleting = false
+    async deleteNote() {
+      try {
+        // Tenemos la referencia del documento...
+        // console.log(`delete note: ${this.activeNote}`)
+        const noteRef = doc(
+          collection(db, userCollections, this.user.uid, notesCollection),
+          this.activeNote
+        )
+        // console.log('New Note to delete -> ', noteRef.id)
+        await deleteDoc(noteRef)
+        this.activeNote = null
+        this.deleting = false
+      } catch (error) {
+        throw new Error(error.message)
+      }
     },
 
     setDeleting(deleting) {
