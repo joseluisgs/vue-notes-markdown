@@ -12,11 +12,14 @@
     <!-- parte izquierda -->
     <section class="md:w-1/4 p-3 mr-3 | bg-gray-100 rounded-md">
       <!-- Logout -->
-      <div class="block text-center mb-3">
-        {{ noteStore.user.displayName }} 👋
+      <div class="text-center mb-3">
+        <div class="text-center text-emerald-700 font-semibold">
+          {{ noteStore.user.displayName }}
+        </div>
+        👋
         <a
           @click="userLogout()"
-          class="underline"
+          class="underline text-blue-900"
           href="#"
         >
           Logout</a
