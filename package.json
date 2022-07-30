@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "dompurify": "^2.3.10",
+    "firebase": "^9.9.1",
     "marked": "^4.0.18",
     "pinia": "^2.0.17",
     "remove-markdown": "^0.5.0",

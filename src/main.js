@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import { firebase } from './services/Firebase'
+
 import App from './App.vue'
 // import router from './router'
 
@@ -10,7 +12,7 @@ import 'virtual:windi-devtools'
 import './assets/styles/base.css'
 
 // creamos la store con las notas
-import notesJson from '@/stores/notes.json'
+import notesJson from '@/services/notes.json'
 import NoteStore from '@/stores/notes.js'
 
 // Creamos la aplicación
@@ -22,7 +24,12 @@ app.use(createPinia())
 
 app.mount('#app')
 
-// Cargamos las notas
+// Firebase
+if (import.meta.env.VITE_APP_STAGE === 'dev') {
+  console.log(`⚑ Firebase -> ${firebase.name} ✓`)
+}
+
+// Cargamos las notas...
 const noteStore = NoteStore()
 noteStore.fetchNotes(notesJson)
 console.log(noteStore.notes)
