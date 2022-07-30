@@ -12,7 +12,7 @@ import 'virtual:windi-devtools'
 import './assets/styles/base.css'
 
 // creamos la store con las notas
-import notesJson from '@/services/notes.json'
+// import notesJson from '@/services/notes.json'
 import NoteStore from '@/stores/notes.js'
 
 // Creamos la aplicación
@@ -31,7 +31,7 @@ if (import.meta.env.VITE_APP_STAGE === 'dev') {
 
 // Cargamos las notas...
 const noteStore = NoteStore()
-noteStore.fetchNotes(notesJson)
+//noteStore.fetchNotes(notesJson)
 noteStore.checkAuth()
 console.log(noteStore.notes)
 

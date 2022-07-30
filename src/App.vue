@@ -89,7 +89,7 @@
       }
 
       const userLogout = async () => {
-        await noteStore.userLogin()
+        await noteStore.userLogout()
       }
 
       return {

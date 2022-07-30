@@ -1,7 +1,8 @@
 import { defineStore } from 'pinia'
 import removeMd from 'remove-markdown'
-import { auth, providerGoogle } from '@/services/Firebase'
+import { auth, providerGoogle, db, notesCollection } from '@/services/Firebase'
 import { signInWithPopup, signOut } from 'firebase/auth'
+import { query, collection, where, doc, orderBy, getDocs } from 'firebase/firestore'
 
 const NoteStore = defineStore({
   id: 'NoteStore',
@@ -38,7 +39,7 @@ const NoteStore = defineStore({
   // Con pinia no es necesario hacer tabntos set porque podemos tocar el estado... pero así encapuslo la
   // lógica de cómo acceder y tocar dicho estado.
   actions: {
-    fetchNotes(newNotes) {
+    setNotes(newNotes) {
       this.notes = newNotes
     },
 
@@ -51,7 +52,7 @@ const NoteStore = defineStore({
       noteToUpdate.body = body
     },
 
-    createNote() {
+    async createNote() {
       const newNote = {
         id: Date.now(),
         body: '',
@@ -77,7 +78,6 @@ const NoteStore = defineStore({
 
     setUser(user) {
       this.user = user
-      console.log()
     },
 
     async userLogin() {
@@ -91,7 +91,8 @@ const NoteStore = defineStore({
     async userLogout() {
       try {
         await signOut(auth)
-        this.user = null
+        this.setUser(null)
+        this.setNotes([])
       } catch (error) {
         throw new Error(error.message)
       }
@@ -100,7 +101,36 @@ const NoteStore = defineStore({
     checkAuth() {
       auth.onAuthStateChanged((user) => {
         this.setUser(user)
+        // Si estamos logueados, cargamos las notas
+        if (user) {
+          this.getNotes()
+        }
       })
+    },
+
+    async getNotes() {
+      const q = query(
+        collection(db, notesCollection),
+        // Order
+        // orderBy('createdAt', 'desc'),
+        // Solo las de este usuario uid
+        where('uid', '==', this.user.uid)
+      )
+
+      const querySnapshot = await getDocs(q)
+      let notes = []
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, ' => ', doc.data())
+        let { body, uid, createdAt } = doc.data()
+        notes.push({
+          id: doc.id,
+          uid,
+          body,
+          createdAt,
+        })
+      })
+      this.setNotes(notes)
     },
   },
 })
