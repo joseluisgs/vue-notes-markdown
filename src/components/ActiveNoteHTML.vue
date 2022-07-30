@@ -29,7 +29,7 @@
   }
 </script>
 
-<style scoped>
+<style>
   .mdscss {
     font-size: 1rem;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
@@ -37,22 +37,22 @@
   }
 
   .mdscss h1 {
-    font-size: 3.375em;
+    font-size: 2rem;
     font-weight: bold;
   }
 
   .mdscss h2 {
-    font-size: 2.25em;
+    font-size: 1.5rem;
     font-weight: bold;
   }
 
   .mdscss h3 {
-    font-size: 1.5em;
+    font-size: 1.25em;
     font-weight: bold;
   }
 
   .mdscss h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: bold;
   }
 

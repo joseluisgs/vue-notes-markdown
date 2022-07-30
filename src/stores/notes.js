@@ -167,7 +167,7 @@ const NoteStore = defineStore({
         querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           // console.log(doc.id, ' => ', doc.data())
-          let { body, uid, createdAt } = doc.data()
+          let { body, createdAt } = doc.data()
           notes.push({
             id: doc.id,
             body,

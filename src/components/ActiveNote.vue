@@ -3,24 +3,26 @@
     v-if="activeNote"
     class="h-full | flex flex-col"
   >
-    <div class="flex-1 | flex">
+    <div class="flex-1 | md:flex">
       <section class="flex-1">
         <!-- Esto lo hacemos siguiendo esto: https://vuejs.org/guide/components/events.html#usage-with-v-model -->
         <ActiveNoteMD
           v-model:body="activeNote.body"
           @update:body="updateNote"
           @blur-note="blurNote"
-          class="w-full h-full p-3 | bg-gray-200"
+          class="min-h-1/4 w-full h-full p-3 | bg-gray-200"
         />
       </section>
       <ActiveNoteHTML
         :body="activeNote.body"
-        class="p-3 | bg-gray-900 text-white | flex-1"
+        class="min-h-1/4 p-3 | bg-gray-900 text-white | flex-1"
       />
     </div>
     <!-- Note Info and actions -->
-    <section class="mt-3 mr-3 | flex justify-between items-center">
-      <div class="text-xs">Created on {{ noteDate }}, contains {{ noteLength }} words</div>
+    <section class="mt-3 mr-3 | flex flex-col md:flex-row justify-between items-center">
+      <div class="text-xs mb-3 sm:mb-0">
+        Created on {{ noteDate }}, contains {{ noteLength }} words
+      </div>
       <div>
         <a
           @click="deleteNote"
