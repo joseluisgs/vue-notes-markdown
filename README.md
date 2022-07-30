@@ -3,6 +3,7 @@ Proyecto de app en vue para creary manejar notas en formato markdown
 
 [![Vue Ready](https://img.shields.io/badge/Code-Vue.js-%2342b983)](https://es.vuejs.org/)
 [![LICENSE](https://img.shields.io/badge/Lisence-CC-%23e64545)](https://joseluisgs.github.io/docs/license/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/730adb7c-1fc8-4fca-896b-52fca23e6130/deploy-status)](https://app.netlify.com/sites/vue-notes-markdown/deploys)
 ![GitHub](https://img.shields.io/github/last-commit/joseluisgs/vue-notes-markdown)
 
 <p align="center">
@@ -12,6 +13,7 @@ Proyecto de app en vue para creary manejar notas en formato markdown
 
 - [Vue Notes Markdown](#vue-notes-markdown)
   - [Acerca de](#acerca-de)
+  - [Despliegue](#despliegue)
   - [Project Setup](#project-setup)
     - [Compile and Hot-Reload for Development](#compile-and-hot-reload-for-development)
     - [Compile and Minify for Production](#compile-and-minify-for-production)
@@ -26,6 +28,8 @@ Proyecto de app en vue para creary manejar notas en formato markdown
 ## Acerca de
 Sencilla aplicación de notas usando ficheros markdown, lamacenamiento en Firebase y TailwindCSS.
 
+## Despliegue
+Desplegada en: https://vue-notes-markdown.netlify.app/
 ## Project Setup
 
 ```sh
