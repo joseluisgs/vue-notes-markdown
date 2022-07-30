@@ -84,13 +84,9 @@
     setup() {
       const noteStore = new NoteStore()
 
-      const userLogin = async () => {
-        await noteStore.userLogin()
-      }
+      const userLogin = async () => await noteStore.userLogin()
 
-      const userLogout = async () => {
-        await noteStore.userLogout()
-      }
+      const userLogout = async () => await noteStore.userLogout()
 
       return {
         noteStore,
