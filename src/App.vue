@@ -1,4 +1,8 @@
 <template>
+  <div class="m-3 text-center font-bold text-teal-700 text-2xl">
+    <Icon icon="logos:vue" />Vue Notes Markdown
+    <Icon icon="logos:markdown" />
+  </div>
   <!-- Delete note -->
   <DeleteNote v-if="noteStore.deleting" />
   <div
