@@ -1,6 +1,6 @@
 # Vue Notes Markdown
 
-Proyecto de app en vue para crea ry manejar notas en formato markdown y verlas en html
+Proyecto de app en vue para crear y manejar notas en formato markdown y verlas en html
 
 [![Vue Ready](https://img.shields.io/badge/Code-Vue.js-%2342b983)](https://es.vuejs.org/)
 [![LICENSE](https://img.shields.io/badge/Lisence-CC-%23e64545)](https://joseluisgs.github.io/docs/license/)
